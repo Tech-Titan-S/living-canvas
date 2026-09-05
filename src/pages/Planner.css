@@ -1,0 +1,1104 @@
+/* =========================================================
+   LIVING CANVAS — 2D ROOM PLANNER STYLES
+   (copied from the site's stylesheet, plus one small addition
+   noted below so the furniture panel actually appears)
+========================================================= */
+
+
+.planner-section {
+    
+     padding: 130px 9vw;
+}
+.planner-section
+.section-heading h2 {
+
+    font-family: "Playfair Display",serif;
+
+    font-weight: 400;
+
+    font-size: clamp(45px,5vw,72px);
+
+    line-height: 1;
+    padding-top: 15% !important;
+color:var(--text);
+    letter-spacing: -2px;
+}
+.planner-section
+.section-heading h2 i {
+
+    color: var(--muted);
+
+    font-weight: 400;
+}
+
+.planner-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 35px;
+    align-items: start;
+}
+
+.planner-controls {
+    position: relative;
+    z-index: 5;
+}
+
+.planner-controls label {
+    display: block;
+    margin-bottom: 18px;
+}
+
+.planner-controls input,
+.planner-controls select {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 7px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    outline: none;
+    font: inherit;
+}
+
+#furnitureOptions {
+    width: 100%;
+}
+
+.room-furniture {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+/* Added: the site's full stylesheet defines this toggle
+   elsewhere; included here so the panel renders on its own. */
+.room-furniture.active {
+    display: grid;
+}
+
+.room-furniture .planner-add {
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 7px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+    color: inherit;
+    cursor: pointer;
+    font-size: 11px;
+    transition: .25s ease;
+}
+
+.room-furniture .planner-add:hover {
+    transform: translateY(-2px);
+    background: rgba(68, 36, 3, 0.1);
+}
+
+.floor-wrapper {
+    width: 100%;
+    overflow: auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.floor-plan {
+    position: relative;
+    width: 500px;
+    height: 350px;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    background-color: #eee4d5;
+
+    background-image:
+        linear-gradient(
+            rgba(80,70,60,.10) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(80,70,60,.10) 1px,
+            transparent 1px
+        );
+
+    background-size: 25px 25px;
+
+    border: 5px solid #6d6257;
+    border-radius: 4px;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.18),
+        inset 0 0 0 3px rgba(255,255,255,.5);
+}
+
+.floor-plan .door {
+    position: absolute;
+
+    left: 20px;
+    bottom: -5px;
+
+    width: 65px;
+    height: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #795548;
+    color: white;
+
+    font-size: 7px;
+    letter-spacing: 1px;
+
+    border: 2px solid #4e342e;
+    z-index: 100;
+}
+
+.floor-plan .window {
+    position: absolute;
+
+    top: -5px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 130px;
+    height: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #9ed4e6;
+    color: #315866;
+
+    font-size: 7px;
+    letter-spacing: 1px;
+
+    border: 2px solid #4b707b;
+
+    z-index: 100;
+}
+
+.furniture-item {
+    position: absolute;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    box-sizing: border-box;
+
+    cursor: grab;
+    user-select: none;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 20;
+
+    font-size: 0 !important;
+
+    line-height: 0;
+
+    transition:
+        box-shadow .2s ease,
+        filter .2s ease;
+}
+
+.furniture-item:hover {
+    filter: brightness(1.05);
+    z-index: 80;
+}
+
+.furniture-item:active {
+    cursor: grabbing;
+}
+
+.furniture-sofa {
+    width: 125px;
+    height: 65px;
+
+    background: #947568;
+
+    border: 4px solid #5d463d;
+
+    border-radius: 13px;
+
+    box-shadow:
+        inset 0 10px rgba(255,255,255,.10),
+        0 5px 10px rgba(0,0,0,.12);
+}
+
+.furniture-sofa::before {
+    content: "";
+
+    position: absolute;
+
+    left: 10px;
+    right: 10px;
+    top: 9px;
+
+    height: 27px;
+
+    background: #ad9185;
+
+    border-radius: 8px;
+
+    box-shadow:
+        45px 0 0 -2px #ad9185;
+}
+
+.furniture-sofa::after {
+    content: "";
+
+    position: absolute;
+
+    left: -5px;
+    right: -5px;
+    bottom: -7px;
+
+    height: 11px;
+
+    background: #5d463d;
+
+    border-radius: 5px;
+}
+
+.furniture-bed {
+    width: 115px;
+    height: 155px;
+
+    background: #d7c8b5;
+
+    border: 4px solid #806d5c;
+
+    border-radius: 7px;
+
+    box-shadow: 0 5px 12px rgba(0,0,0,.12);
+}
+
+.furniture-bed::before {
+    content: "";
+
+    position: absolute;
+
+    top: 9px;
+    left: 8px;
+    right: 8px;
+
+    height: 40px;
+
+    background: #f7f3ec;
+
+    border-radius: 5px;
+
+    border-bottom: 2px solid #c5b5a1;
+}
+
+.furniture-bed::after {
+    content: "";
+
+    position: absolute;
+
+    left: 9px;
+    right: 9px;
+    bottom: 12px;
+
+    height: 65px;
+
+    background: #c2af99;
+
+    border-radius: 5px;
+}
+
+.furniture-chair {
+    width: 58px;
+    height: 58px;
+
+    background: #99705b;
+
+    border: 4px solid #5d4037;
+
+    border-radius: 13px;
+}
+
+.furniture-chair::before {
+    content: "";
+
+    position: absolute;
+
+    left: 7px;
+    right: 7px;
+    top: -12px;
+
+    height: 24px;
+
+    background: #ae8873;
+
+    border: 3px solid #5d4037;
+
+    border-radius: 10px;
+}
+
+.furniture-armchair {
+    width: 75px;
+    height: 70px;
+
+    background: #8e6858;
+
+    border: 4px solid #563e35;
+
+    border-radius: 15px;
+}
+
+.furniture-armchair::before {
+    content: "";
+
+    position: absolute;
+
+    left: 10px;
+    right: 10px;
+    top: 8px;
+
+    height: 35px;
+
+    background: #aa8471;
+
+    border-radius: 8px;
+}
+
+.furniture-coffee-table {
+    width: 100px;
+    height: 58px;
+
+    background: #9c714d;
+
+    border: 4px solid #62442e;
+
+    border-radius: 50%;
+
+    box-shadow: 0 4px 8px rgba(0,0,0,.12);
+}
+
+.furniture-coffee-table::before {
+    content: "";
+
+    position: absolute;
+
+    left: 18px;
+    bottom: -15px;
+
+    width: 8px;
+    height: 18px;
+
+    background: #62442e;
+
+    box-shadow: 56px 0 #62442e;
+}
+
+.furniture-dining-table {
+    width: 125px;
+    height: 78px;
+
+    background: #a77a50;
+
+    border: 4px solid #60432d;
+
+    border-radius: 50%;
+}
+
+.furniture-dining-table::before {
+    content: "";
+
+    position: absolute;
+
+    width: 24px;
+    height: 24px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background: #805a39;
+
+    border-radius: 50%;
+}
+
+.furniture-tv {
+    width: 120px;
+    height: 58px;
+
+    background: #171717;
+
+    border: 5px solid #303030;
+
+    border-radius: 5px;
+
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.furniture-tv::before {
+    content: "";
+
+    position: absolute;
+
+    left: 7px;
+    right: 7px;
+    top: 7px;
+    bottom: 7px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #66747d,
+            #1d252b
+        );
+
+    border-radius: 2px;
+}
+
+.furniture-tv::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -13px;
+
+    width: 42px;
+    height: 7px;
+
+    transform: translateX(-50%);
+
+    background: #222;
+}
+
+.furniture-tv-console {
+    width: 135px;
+    height: 42px;
+
+    background: #765446;
+
+    border: 4px solid #4a332b;
+
+    border-radius: 5px;
+}
+
+.furniture-tv-console::before {
+    content: "";
+
+    position: absolute;
+
+    left: 13px;
+    top: 9px;
+
+    width: 38px;
+    height: 18px;
+
+    border: 2px solid #a98b79;
+
+    box-sizing: border-box;
+}
+
+.furniture-tv-console::after {
+    content: "";
+
+    position: absolute;
+
+    right: 13px;
+    top: 9px;
+
+    width: 38px;
+    height: 18px;
+
+    border: 2px solid #a98b79;
+
+    box-sizing: border-box;
+}
+
+.furniture-wardrobe {
+    width: 78px;
+    height: 125px;
+
+    background: #9b7653;
+
+    border: 4px solid #5f432f;
+
+    border-radius: 4px;
+}
+
+.furniture-wardrobe::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+    left: 50%;
+
+    border-left: 2px solid #60432f;
+}
+
+.furniture-wardrobe::after {
+    content: "•   •";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    font-size: 18px !important;
+    line-height: 1;
+
+    color: #493224;
+}
+
+.furniture-nightstand {
+    width: 52px;
+    height: 52px;
+
+    background: #9a7350;
+
+    border: 3px solid #5d422d;
+
+    border-radius: 4px;
+}
+
+.furniture-nightstand::before {
+    content: "";
+
+    position: absolute;
+
+    left: 8px;
+    right: 8px;
+    top: 12px;
+
+    height: 17px;
+
+    border: 2px solid #60432f;
+}
+
+.furniture-dresser {
+    width: 105px;
+    height: 58px;
+
+    background: #9b7653;
+
+    border: 4px solid #60432f;
+
+    border-radius: 4px;
+}
+
+.furniture-dresser::before {
+    content: "";
+
+    position: absolute;
+
+    left: 12px;
+    right: 12px;
+    top: 14px;
+
+    height: 7px;
+
+    border-top: 3px solid #60432f;
+
+    border-bottom: 3px solid #60432f;
+}
+
+.furniture-desk {
+    width: 110px;
+    height: 50px;
+
+    background: #b48a60;
+
+    border: 4px solid #60432d;
+
+    border-radius: 5px;
+}
+
+.furniture-desk::before {
+    content: "";
+
+    position: absolute;
+
+    left: 9px;
+    bottom: -18px;
+
+    width: 7px;
+    height: 18px;
+
+    background: #60432d;
+
+    box-shadow: 85px 0 #60432d;
+}
+
+.furniture-rug {
+    width: 155px;
+    height: 100px;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #b59a78 0,
+            #b59a78 8px,
+            #d7c4a7 8px,
+            #d7c4a7 16px
+        );
+
+    border: 5px solid #80694e;
+
+    border-radius: 5px;
+
+    z-index: 5;
+}
+
+.furniture-plant {
+    width: 48px;
+    height: 45px;
+
+    background: #98623f;
+
+    border: 3px solid #63402b;
+
+    border-radius: 5px 5px 15px 15px;
+}
+
+.furniture-plant::before {
+    content: "🌿";
+
+    position: absolute;
+
+    left: 3px;
+    top: -38px;
+
+    font-size: 35px !important;
+    line-height: 1;
+}
+
+.furniture-floor-lamp {
+    width: 48px;
+    height: 105px;
+}
+
+.furniture-floor-lamp::before {
+    content: "";
+
+    position: absolute;
+
+    left: 7px;
+    top: 0;
+
+    width: 34px;
+    height: 38px;
+
+    background: #d4bb8c;
+
+    border: 3px solid #725b3c;
+
+    border-radius: 50% 50% 8px 8px;
+}
+
+.furniture-floor-lamp::after {
+    content: "";
+
+    position: absolute;
+
+    left: 23px;
+    top: 34px;
+
+    width: 5px;
+    height: 60px;
+
+    background: #725b3c;
+
+    box-shadow:
+        -12px 57px 0 3px #725b3c;
+}
+
+.furniture-refrigerator {
+    width: 62px;
+    height: 112px;
+
+    background: #d6d6d6;
+
+    border: 4px solid #747474;
+
+    border-radius: 5px;
+}
+
+.furniture-refrigerator::before {
+    content: "";
+
+    position: absolute;
+
+    top: 52%;
+    left: 0;
+    right: 0;
+
+    border-top: 3px solid #888;
+}
+
+.furniture-refrigerator::after {
+    content: "";
+
+    position: absolute;
+
+    right: 8px;
+    top: 20px;
+
+    height: 26px;
+
+    border-right: 3px solid #666;
+}
+
+.furniture-stove {
+    width: 78px;
+    height: 78px;
+
+    background: #444;
+
+    border: 4px solid #222;
+
+    border-radius: 5px;
+}
+
+.furniture-stove::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 9px;
+
+    background:
+        radial-gradient(
+            circle,
+            #111 0 8px,
+            transparent 9px
+        );
+
+    background-size: 30px 30px;
+}
+
+.furniture-sink {
+    width: 88px;
+    height: 58px;
+
+    background: #c3c8c9;
+
+    border: 4px solid #62686b;
+
+    border-radius: 7px;
+}
+
+.furniture-sink::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 10px;
+
+    border: 3px solid #858d90;
+
+    border-radius: 50%;
+}
+
+.furniture-sink::after {
+    content: "";
+
+    position: absolute;
+
+    right: 8px;
+    top: -12px;
+
+    width: 15px;
+    height: 15px;
+
+    border: 3px solid #62686b;
+
+    border-radius: 50%;
+}
+
+.furniture-cabinet {
+    width: 112px;
+    height: 62px;
+
+    background: #a77c55;
+
+    border: 4px solid #60442f;
+
+    border-radius: 4px;
+}
+
+.furniture-cabinet::before {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 5px;
+    bottom: 5px;
+
+    border-left: 3px solid #60442f;
+}
+
+.furniture-kitchen-island {
+    width: 150px;
+    height: 68px;
+
+    background: #c7b9a5;
+
+    border: 5px solid #786b5b;
+
+    border-radius: 6px;
+}
+
+.furniture-kitchen-island::before {
+    content: "";
+
+    position: absolute;
+
+    left: 15px;
+    right: 15px;
+    top: 12px;
+
+    height: 35px;
+
+    border: 3px solid #9a8d7b;
+
+    border-radius: 4px;
+}
+
+.furniture-counter {
+    width: 155px;
+    height: 52px;
+
+    background: #c9bba5;
+
+    border: 4px solid #756957;
+
+    border-radius: 4px;
+}
+
+.furniture-sectional-sofa {
+    width: 150px;
+    height: 110px;
+
+    background: #80665a;
+
+    border: 4px solid #514039;
+
+    border-radius: 15px;
+}
+
+.furniture-sectional-sofa::before {
+    content: "";
+
+    position: absolute;
+
+    top: 12px;
+    left: 12px;
+    right: 12px;
+
+    height: 30px;
+
+    background: #a18a7d;
+
+    border-radius: 8px;
+}
+
+.furniture-sectional-sofa::after {
+    content: "";
+
+    position: absolute;
+
+    left: 12px;
+    bottom: 12px;
+
+    width: 55px;
+    height: 35px;
+
+    background: #a18a7d;
+
+    border-radius: 8px;
+}
+
+.furniture-recliner {
+    width: 72px;
+    height: 78px;
+
+    background: #795548;
+
+    border: 4px solid #4e342e;
+
+    border-radius: 15px;
+}
+
+.furniture-recliner::before {
+    content: "";
+
+    position: absolute;
+
+    top: -12px;
+    left: 8px;
+    right: 8px;
+
+    height: 30px;
+
+    background: #8d6e63;
+
+    border: 3px solid #4e342e;
+
+    border-radius: 12px;
+}
+
+.furniture-media-unit {
+    width: 155px;
+    height: 48px;
+
+    background: #684d40;
+
+    border: 4px solid #46352e;
+
+    border-radius: 5px;
+}
+
+.furniture-sideboard {
+    width: 130px;
+    height: 52px;
+
+    background: #956f4e;
+
+    border: 4px solid #60442f;
+
+    border-radius: 4px;
+}
+
+.furniture-sideboard::before {
+    content: "";
+
+    position: absolute;
+
+    left: 15px;
+    right: 15px;
+    top: 18px;
+
+    border-top: 3px solid #60442f;
+}
+
+.furniture-bar-cart {
+    width: 72px;
+    height: 62px;
+
+    background:
+        linear-gradient(
+            #9a7655 0 5px,
+            transparent 5px 26px,
+            #9a7655 26px 31px,
+            transparent 31px
+        );
+
+    border-left: 4px solid #684a35;
+    border-right: 4px solid #684a35;
+}
+
+.furniture-bar-cart::before {
+    content: "";
+
+    position: absolute;
+
+    bottom: -13px;
+    left: 4px;
+
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    background: #684a35;
+
+    box-shadow: 45px 0 #684a35;
+}
+
+.furniture-pendant-light {
+    width: 58px;
+    height: 58px;
+
+    background: #d7bd88;
+
+    border: 4px solid #78633e;
+
+    border-radius: 50%;
+}
+
+.furniture-pendant-light::before {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: -38px;
+
+    height: 35px;
+
+    border-left: 3px solid #78633e;
+}
+
+.furniture-delete {
+    position: absolute !important;
+
+    top: -10px !important;
+    right: -10px !important;
+
+    width: 20px !important;
+    height: 20px !important;
+
+    padding: 0 !important;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none !important;
+
+    border-radius: 50% !important;
+
+    background: #b94a48 !important;
+    color: white !important;
+
+    font-size: 13px !important;
+    line-height: 20px !important;
+
+    cursor: pointer;
+
+    z-index: 200;
+}
+
+.furniture-item:hover .furniture-delete {
+    display: flex;
+}
+
+@media (max-width: 800px) {
+
+    .planner-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .planner-controls {
+        width: 100%;
+    }
+
+    .floor-wrapper {
+        padding: 10px;
+    }
+
+    .floor-plan {
+        margin-left: 0;
+    }
+}
