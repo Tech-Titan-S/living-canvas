@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { InferenceClient } from "@huggingface/inference";
 
-const HF_TOKEN = import.meta.env.VITE_GROQ_API_KEY;
+const HF_TOKEN = import.meta.env.VITE_HF_TOKEN;
 
 /* =========================================================
    OPTIONS
@@ -425,7 +425,7 @@ Keep the original room recognizable.
 
     if (!HF_TOKEN) {
       setError(
-        "Hugging Face token is missing. Add VITE_GROQ_API_KEY to your .env file."
+        "Hugging Face token is missing. Add VITE_HF_TOKEN to your .env file."
       );
       return;
     }
